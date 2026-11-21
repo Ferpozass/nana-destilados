@@ -115,6 +115,11 @@
         <p class="price" id="price" aria-live="polite">¥9,745</p>
         <div class="cur" role="group" aria-label="Moneda / 通貨"><button type="button" data-c="jpy" aria-pressed="true">JPY</button><button type="button" data-c="mxn" aria-pressed="false">MXN</button><button type="button" data-c="usd" aria-pressed="false">USD</button></div>
         <p class="note"><span class="es">700 ml · incluye impuesto al consumo (10%).</span><span class="ja">700ml・消費税10％込み。</span></p>
+        <div class="pays" aria-label="Medios de pago">
+          <p class="pays-t"><span class="es">Paga como pagas en Japón</span><span class="ja">日本のお支払い方法に対応</span></p>
+          <ul><li><span class="es">Tarjeta</span><span class="ja">クレジットカード</span></li><li>PayPay</li><li><span class="es">Rakuten Pay</span><span class="ja">楽天ペイ</span></li><li><span class="es">Pago en konbini</span><span class="ja">コンビニ払い</span></li></ul>
+          <p class="note"><span class="es">Importadores: carta de crédito o transferencia SWIFT, en dólares. Tienda en línea: <b>nana-agave.jp</b></span><span class="ja">輸入者：信用状またはSWIFT送金（米ドル建て）。オンラインストア：<b>nana-agave.jp</b></span></p>
+        </div>
       </div>
       <div class="buy-cta">
         <a class="btn" href="#contacto"><span class="es">Quiero una botella</span><span class="ja">ボトルを注文する</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -295,7 +300,11 @@
 
       <form class="card club rv" id="fc" novalidate>
         <h3><span class="es">Únete al Club ナナ</span><span class="ja">ナナ・クラブに参加</span></h3>
-        <p class="note"><span class="es">Notas de cata, recetas y aviso de nuevos lotes.</span><span class="ja">テイスティングノート、レシピ、新ロットのお知らせ。</span></p>
+        <ul class="perks">
+          <li><b>QR</b><span><span class="es">Cada botella trae un código QR que registra su número de serie y te da acceso a notas de cata y recetas.</span><span class="ja">各ボトルのQRコードでシリアル番号を登録。テイスティングノートとレシピが見られます。</span></span></li>
+          <li><b>7</b><span><span class="es">A los 7 días de tu compra te escribimos por correo o LINE para saber cómo te fue.</span><span class="ja">購入7日後、メールまたはLINEでご感想を伺います。</span></span></li>
+          <li><b>2ª</b><span><span class="es">Acumulas puntos para tu segunda botella y te avisamos antes que nadie de cada lote nuevo.</span><span class="ja">2本目に使えるポイントと、新ロットの先行案内。</span></span></li>
+        </ul>
         <div class="field"><input type="email" id="ce" required autocomplete="email" placeholder=" "><label for="ce"><span class="es">Correo</span><span class="ja">メールアドレス</span></label></div>
         <div class="field"><select id="cr"><option value="Cliente">Cliente / お客様</option><option value="Bar o tienda">Bar o tienda / バー・店舗</option><option value="Importador">Importador / 輸入者</option></select><label for="cr" class="up"><span class="es">¿Quién eres?</span><span class="ja">あなたは？</span></label></div>
         <button class="btn" type="submit"><span class="es">Unirme</span><span class="ja">参加する</span></button>
@@ -304,6 +313,8 @@
 
       <form class="card msgform rv" id="fm" novalidate>
         <h3><span class="es">Escríbenos</span><span class="ja">メッセージ</span></h3>
+        <p class="note"><span class="es">Atención en japonés y español. Respondemos en 24 horas hábiles.</span><span class="ja">日本語・スペイン語で対応。営業日24時間以内に返信します。</span></p>
+        <a class="line-chat" href="https://line.me/R/ti/p/@nana-agave" target="_blank" rel="noopener"><span class="line-dot" aria-hidden="true">LINE</span><span><b><span class="es">Chatea con nosotros</span><span class="ja">チャットで相談</span></b><small>@nana-agave</small></span></a>
         <div class="field"><input id="mn" required autocomplete="name" placeholder=" "><label for="mn"><span class="es">Nombre</span><span class="ja">お名前</span></label></div>
         <div class="field"><input type="email" id="me" required autocomplete="email" placeholder=" "><label for="me"><span class="es">Correo</span><span class="ja">メール</span></label></div>
         <div class="field"><textarea id="mm" rows="3" required placeholder=" "></textarea><label for="mm"><span class="es">Pedidos, muestras o distribución</span><span class="ja">注文・サンプル・取扱</span></label></div>
@@ -313,6 +324,24 @@
         <button class="btn" type="submit"><span class="es">Enviar</span><span class="ja">送信</span></button>
         <p class="note msg" id="fmm" role="status"></p>
       </form>
+
+      <div class="card share rv">
+        <div>
+          <h3><span class="es">Comparte tu copa</span><span class="ja">グラスをシェア</span></h3>
+          <p><span class="es">Sube tu foto con</span><span class="ja">ハッシュタグ</span> <b class="tag">#ナナの一杯</b><span class="es"> o comparte NÄNÄ con un clic.</span><span class="ja"> で投稿、またはワンクリックでシェア。</span></p>
+          <div class="share-btns">
+            <a class="sbtn" id="sx" target="_blank" rel="noopener" aria-label="Compartir en X"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>X</a>
+            <a class="sbtn" id="sl" target="_blank" rel="noopener" aria-label="Compartir en LINE"><span class="line-mini" aria-hidden="true">L</span>LINE</a>
+            <a class="sbtn" href="https://www.instagram.com/nanadestiladosmx/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/></svg>Instagram</a>
+            <button class="sbtn" type="button" id="cp"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg><span class="es">Copiar enlace</span><span class="ja">リンクをコピー</span></button>
+          </div>
+          <p class="note msg" id="cpm" role="status"></p>
+        </div>
+        <div class="refer">
+          <p class="refer-k"><span class="es">Recomienda y gana</span><span class="ja">紹介特典</span></p>
+          <p class="refer-t"><span class="es">¿Tu bar favorito aún no tiene NÄNÄ? Recomiéndalo: si hace su pedido, te regalamos una miniatura de 200 ml.</span><span class="ja">お気に入りのバーにNÄNÄを紹介してください。ご注文が成立したら、200mlのミニボトルをプレゼントします。</span></p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -351,6 +380,7 @@
         <li><a href="historia.html#origen"><span class="es">Origen y transparencia</span><span class="ja">産地と透明性</span></a></li>
         <li><a href="blog.html"><span class="es">Blog</span><span class="ja">ブログ</span></a></li>
         <li><a href="historia.html#identidad"><span class="es">Identidad cultural</span><span class="ja">文化的アイデンティティ</span></a></li>
+        <li><a href="estrategia.html"><span class="es">Estrategia · Unidad III</span><span class="ja">戦略（第3単元）</span></a></li>
       </ul></div>
       <div><p class="foot-h"><span class="es">Ayuda</span><span class="ja">サポート</span></p><ul>
         <li><a href="legal.html#faq"><span class="es">Preguntas frecuentes</span><span class="ja">よくある質問</span></a></li>

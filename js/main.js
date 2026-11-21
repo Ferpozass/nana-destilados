@@ -178,6 +178,17 @@
       document.querySelectorAll('#st button').forEach(function (x, j) { x.classList.toggle('on', j <= i); x.setAttribute('aria-pressed', j <= i); });
     });
   });
+  /* Compartir (viralidad) */
+  var shareUrl = location.href.split('#')[0].split('?')[0], shareTxt = encodeURIComponent('NÄNÄ ナナ #ナナの一杯');
+  var sx = document.getElementById('sx'), sl = document.getElementById('sl'), cp = document.getElementById('cp');
+  if (sx) sx.href = 'https://twitter.com/intent/tweet?text=' + shareTxt + '&url=' + encodeURIComponent(shareUrl);
+  if (sl) sl.href = 'https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(shareUrl);
+  if (cp) cp.addEventListener('click', function () {
+    var m = document.getElementById('cpm'), ok = ja() ? 'リンクをコピーしました' : 'Enlace copiado';
+    try { navigator.clipboard.writeText(shareUrl).then(function () { m.textContent = '✓ ' + ok; }, function () { m.textContent = shareUrl; }); }
+    catch (e) { m.textContent = shareUrl; }
+  });
+
   var fn = document.getElementById('fn');
   if (fn) fn.addEventListener('submit', function (e) {
     e.preventDefault(); var i = document.getElementById('fne'), m = document.getElementById('fnm');
