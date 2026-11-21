@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es" data-l="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NÄNÄ ナナ — Destilado de agave · アガベ蒸留酒</title>
+<meta name="description" content="NÄNÄ ナナ: destilado 100% de agave hecho a mano en Querétaro, México, para las noches de Tokio. Edición limitada de 2,000 botellas.">
+<meta name="theme-color" content="#f7f2e3">
+<link rel="icon" href="img/logo.webp" type="image/webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=Shippori+Mincho:wght@400;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/botella.webp?v=2">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<canvas id="atmos" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<!-- ============ Verificación de edad (Japón: 20 años) ============ -->
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt">
+  <div class="gate-card">
+    <img class="gate-logo" src="img/logo.webp" alt="NÄNÄ ナナ" width="1007" height="383">
+    <p class="gate-k"><span class="es">Destilado de agave</span><span class="ja">アガベ蒸留酒</span></p>
+    <h2 id="gt"><span class="es">¿Tienes 20 años o más?</span><span class="ja">あなたは20歳以上ですか？</span></h2>
+    <p class="note"><span class="es">En Japón la venta y el consumo de alcohol están prohibidos a menores de 20 años.</span><span class="ja">日本では20歳未満の飲酒・酒類の購入は法律で禁止されています。</span></p>
+    <div class="gate-actions">
+      <button class="btn" id="yes" type="button"><span class="es">Sí, entrar</span><span class="ja">はい、入る</span></button>
+      <button class="btn ghost" id="no" type="button"><span class="es">No</span><span class="ja">いいえ</span></button>
+    </div>
+    <p id="nomsg" class="note" role="status" hidden><span class="es">Lo sentimos, este sitio es solo para mayores de 20 años.</span><span class="ja">申し訳ありません。20歳未満の方はご利用いただけません。</span></p>
+    <div class="tg gate-tg" role="group" aria-label="Idioma / 言語"><button type="button" data-set="es" aria-pressed="true">ES</button><button type="button" data-set="ja" aria-pressed="false">日本語</button></div>
+  </div>
+</div>
+
+<!-- ============ Barra superior ============ -->
+<header class="top" id="top">
+  <a class="brand" href="#inicio" aria-label="NÄNÄ ナナ, inicio"><span>NÄNÄ</span><i>ナナ</i></a>
+  <nav class="menu" id="menu" aria-label="Principal">
+    <a href="#botella"><span class="es">Botella</span><span class="ja">ボトル</span></a>
+    <a href="#viaje"><span class="es">El viaje</span><span class="ja">旅</span></a>
+    <a href="#ritual"><span class="es">Ritual</span><span class="ja">お届け</span></a>
+    <a href="#disfruta"><span class="es">Disfrutar</span><span class="ja">楽しみ方</span></a>
+    <a href="#tokio"><span class="es">Tokio</span><span class="ja">東京</span></a>
+    <a href="#contacto"><span class="es">Contacto</span><span class="ja">お問い合わせ</span></a>
+  </nav>
+  <div class="top-r">
+    <div class="tg" role="group" aria-label="Idioma / 言語"><button type="button" data-set="es" aria-pressed="true">ES</button><button type="button" data-set="ja" aria-pressed="false">日本語</button></div>
+    <a class="btn sm hide-sm" href="#contacto"><span class="es">Pedir</span><span class="ja">注文</span></a>
+    <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <svg class="blades" viewBox="0 0 400 400" aria-hidden="true"><path d="M200 400 C190 300 150 230 70 170"/><path d="M200 400 C200 290 205 200 200 90"/><path d="M200 400 C215 300 255 230 335 170"/><path d="M200 400 C170 330 120 300 30 290"/><path d="M200 400 C235 330 285 300 375 290"/></svg>
+  <p class="hero-ghost" aria-hidden="true">ナナ</p>
+
+  <div class="hero-copy">
+    <p class="kicker"><span class="es">Destilado 100% de agave</span><span class="ja">100％アガベ蒸留酒</span> <b>·</b> Querétaro <span class="arrow" aria-hidden="true">→</span> 東京</p>
+    <h1 class="hero-title"><span class="ht-l">NÄNÄ</span><span class="ht-j" lang="ja">ナナ</span></h1>
+    <p class="hero-lead"><span class="es">De Querétaro a Tokio, hecho a mano.</span><span class="ja">ケレタロから東京へ、手づくりで。</span></p>
+    <p class="hero-sub"><span class="es">Una edición limitada de 2,000 botellas para las noches de Tokio.</span><span class="ja">東京の夜のための、2,000本の限定エディション。</span></p>
+    <div class="cta-row">
+      <a class="btn" href="#botella"><span class="es">Conoce la botella</span><span class="ja">ボトルを見る</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn ghost" href="#contacto"><span class="es">Quiero probarlo</span><span class="ja">試飲を申し込む</span></a>
+    </div>
+  </div>
+
+  <div class="hero-stage" id="stage">
+    <div class="halo" aria-hidden="true"></div>
+    <div class="ring" aria-hidden="true"></div>
+    <img class="hero-bottle" id="heroBottle" src="img/botella.webp?v=2" alt="Botella NÄNÄ de 700 ml: vidrio facetado con relieve de agave, etiqueta crema y tapón de madera" width="479" height="999" fetchpriority="high">
+    <div class="shadow" aria-hidden="true"></div>
+  </div>
+
+  <ul class="hero-specs" aria-label="Datos clave">
+    <li><b>700<small>ml</small></b><span class="es">Formato de bar</span><span class="ja">バーの定番サイズ</span></li>
+    <li><b>100<small>%</small></b><span class="es">Agave</span><span class="ja">アガベ</span></li>
+    <li><b>2,000</b><span class="es">Botellas</span><span class="ja">本限定</span></li>
+  </ul>
+
+  <a class="scroll-cue" href="#botella" aria-label="Bajar"><span></span></a>
+</section>
+
+<div class="mq" aria-hidden="true"><div class="mq-track"><span>アガベ蒸留酒</span><i>✦</i><span>destilado de agave</span><i>✦</i><span>ナナ</span><i>✦</i><span>手づくり</span><i>✦</i><span>a mano</span><i>✦</i><span>東京</span><i>✦</i><span>Querétaro</span><i>✦</i><span>アガベ蒸留酒</span><i>✦</i><span>destilado de agave</span><i>✦</i><span>ナナ</span><i>✦</i><span>手づくり</span><i>✦</i><span>a mano</span><i>✦</i><span>東京</span><i>✦</i><span>Querétaro</span><i>✦</i></div></div>
+
+<!-- ============ LA BOTELLA ============ -->
+<section class="sec bottle-sec" id="botella">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <p class="eyebrow"><span>01</span><span class="es">La botella</span><span class="ja">ボトル</span></p>
+      <h2><span class="es">Hecha para <em>mirarse</em>.</span><span class="ja">見つめたくなる<em>ボトル</em>。</span></h2>
+    </header>
+
+    <div class="showcase">
+      <div class="feat f1 rv"><span class="dot"></span><h3><span class="es">Tapón de madera</span><span class="ja">木製の栓</span></h3><p><span class="es">Con una cinta que lleva el agave dorado.</span><span class="ja">金のアガベをあしらった帯付き。</span></p></div>
+      <div class="feat f2 rv"><span class="dot"></span><h3><span class="es">Etiqueta NÄNÄ · ナナ</span><span class="ja">ラベル NÄNÄ · ナナ</span></h3><p><span class="es">Dos escrituras, una sola identidad.</span><span class="ja">ふたつの文字、ひとつのアイデンティティ。</span></p></div>
+      <figure class="show-bottle">
+        <button class="zoom" type="button" data-full="img/botella-blanco.webp" aria-label="Ampliar botella NÄNÄ">
+          <img src="img/botella.webp?v=2" alt="Botella NÄNÄ con vidrio facetado en forma de hojas de agave" width="479" height="999" loading="lazy">
+        </button>
+        <div class="plinth" aria-hidden="true"></div>
+      </figure>
+      <div class="feat f3 rv"><span class="dot"></span><h3><span class="es">Vidrio facetado</span><span class="ja">ファセットガラス</span></h3><p><span class="es">Las hojas del agave, en relieve en la base.</span><span class="ja">底にアガベの葉のレリーフ。</span></p></div>
+      <div class="feat f4 rv"><span class="dot"></span><h3>700 ml</h3><p><span class="es">El formato de los bares e izakayas de Tokio.</span><span class="ja">東京のバーや居酒屋で定番のサイズ。</span></p></div>
+    </div>
+
+    <div class="buy rv">
+      <div class="buy-price">
+        <p class="eyebrow small"><span class="es">Precio en Tokio</span><span class="ja">東京での価格</span></p>
+        <p class="price" id="price" aria-live="polite">¥9,745</p>
+        <div class="cur" role="group" aria-label="Moneda / 通貨"><button type="button" data-c="jpy" aria-pressed="true">JPY</button><button type="button" data-c="mxn" aria-pressed="false">MXN</button><button type="button" data-c="usd" aria-pressed="false">USD</button></div>
+        <p class="note"><span class="es">700 ml · incluye impuesto al consumo (10%).</span><span class="ja">700ml・消費税10％込み。</span></p>
+      </div>
+      <div class="buy-cta">
+        <a class="btn" href="#contacto"><span class="es">Quiero una botella</span><span class="ja">ボトルを注文する</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <details class="ficha">
+          <summary><span class="es">Ficha técnica</span><span class="ja">製品情報</span></summary>
+          <dl>
+            <dt><span class="es">Categoría</span><span class="ja">品名</span></dt><dd><span class="es">Destilado de agave</span><span class="ja">スピリッツ（アガベ蒸留酒）</span></dd>
+            <dt><span class="es">Ingrediente</span><span class="ja">原材料名</span></dt><dd><span class="es">100% agave</span><span class="ja">アガベ</span></dd>
+            <dt><span class="es">Contenido</span><span class="ja">内容量</span></dt><dd>700 ml</dd>
+            <dt><span class="es">Alcohol</span><span class="ja">アルコール分</span></dt><dd><span class="es">40% Alc. Vol.</span><span class="ja">40度</span></dd>
+            <dt><span class="es">Origen</span><span class="ja">原産国名</span></dt><dd><span class="es">Querétaro, México</span><span class="ja">メキシコ（ケレタロ）</span></dd>
+            <dt><span class="es">Lote</span><span class="ja">ロット</span></dt><dd><span class="es">Edición limitada · 2,000 botellas</span><span class="ja">限定2,000本</span></dd>
+          </dl>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CIFRAS ============ -->
+<section class="stats" aria-label="NÄNÄ en cifras">
+  <div class="wrap stats-grid">
+    <div class="stat rv"><b><span data-count="100">0</span>%</b><span class="es">agave, nada más</span><span class="ja">アガベ100％</span></div>
+    <div class="stat rv"><b><span data-count="2000" data-sep="1">0</span></b><span class="es">botellas por lote</span><span class="ja">本の限定ロット</span></div>
+    <div class="stat rv"><b><span data-count="23">0</span><small> <span class="es">días</span><span class="ja">日</span></small></b><span class="es">como máximo, de Querétaro a Tokio por mar</span><span class="ja">以内でケレタロから東京へ（海路）</span></div>
+    <div class="stat rv"><b><span data-count="0">0</span>%</b><span class="es">arancel México–Japón</span><span class="ja">日墨EPAで関税0％</span></div>
+  </div>
+</section>
+
+<!-- ============ EL VIAJE ============ -->
+<section class="sec journey" id="viaje">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <p class="eyebrow"><span>02</span><span class="es">El viaje</span><span class="ja">旅</span></p>
+      <h2><span class="es">De la tierra <em>a la copa</em>.</span><span class="ja">大地から、<em>グラスへ</em>。</span></h2>
+    </header>
+
+    <div class="route rv" aria-hidden="true">
+      <svg viewBox="0 0 1000 220" preserveAspectRatio="none">
+        <defs><linearGradient id="rg" x1="0" x2="1"><stop offset="0" stop-color="var(--gold)"/><stop offset="1" stop-color="var(--pri)"/></linearGradient></defs>
+        <path class="route-base" d="M60 170 C 300 10, 700 10, 940 120"/>
+        <path class="route-line" pathLength="1" d="M60 170 C 300 10, 700 10, 940 120"/>
+        <circle class="pin" cx="60" cy="170" r="7"/><circle class="pin pulse" cx="60" cy="170" r="7"/>
+        <circle class="pin" cx="940" cy="120" r="7"/><circle class="pin pulse d2" cx="940" cy="120" r="7"/>
+      </svg>
+      <span class="ship"></span>
+      <div class="route-lbl l"><b>Querétaro</b><small>20.59° N · 100.39° W</small></div>
+      <div class="route-lbl r"><b>東京 Tokio</b><small>35.68° N · 139.69° E</small></div>
+      <div class="route-mid"><span class="es">Océano Pacífico · 15–23 días · sin escalas en EE. UU.</span><span class="ja">太平洋 · 15〜23日 · アメリカ経由なし</span></div>
+    </div>
+
+    <ol class="steps">
+      <li class="step rv">
+        <figure><img src="img/campo.webp" alt="Campo de agave al atardecer en el semidesierto de Querétaro" width="914" height="768" loading="lazy"></figure>
+        <div class="step-t"><span class="num">01</span><h3><span class="es">La tierra</span><span class="ja">大地</span></h3><p><span class="es">Agave del semidesierto de Querétaro.</span><span class="ja">ケレタロの半砂漠で育つアガベ。</span></p></div>
+      </li>
+      <li class="step rv">
+        <figure><img src="img/taller.webp" alt="Manos de un maestro destilador sosteniendo agave cocido junto a un alambique de cobre" width="1376" height="768" loading="lazy"></figure>
+        <div class="step-t"><span class="num">02</span><h3><span class="es">Las manos</span><span class="ja">手仕事</span></h3><p><span class="es">Cocido y destilado a mano, en lotes pequeños.</span><span class="ja">小さなロットで、手で蒸し、手で蒸留。</span></p></div>
+      </li>
+      <li class="step rv">
+        <figure><img src="img/mesa.webp" alt="Mesa de degustación con la botella NÄNÄ, tazas ochoko y bocadillos japoneses" width="1100" height="1100" loading="lazy"></figure>
+        <div class="step-t"><span class="num">03</span><h3><span class="es">La mesa</span><span class="ja">食卓</span></h3><p><span class="es">Llega a Tokio lista para compartir.</span><span class="ja">分かち合うために、東京の食卓へ。</span></p></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ RITUAL ============ -->
+<section class="sec ritual" id="ritual">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <p class="eyebrow"><span>03</span><span class="es">El ritual</span><span class="ja">ひととき</span></p>
+      <h2><span class="es">Así llega <em>tu NÄNÄ</em>.</span><span class="ja"><em>NÄNÄ</em>のお届け。</span></h2>
+      <p class="lead"><span class="es">Todo en un mismo paquete, listo para regalar.</span><span class="ja">贈り物にそのまま使える、ひとつのセット。</span></p>
+    </header>
+
+    <div class="bento">
+      <button class="tile t-big zoom rv" type="button" data-full="img/paquete.webp" aria-label="Ampliar: botella envuelta en furoshiki con tazas ochoko">
+        <img src="img/paquete.webp" alt="Botella NÄNÄ envuelta en furoshiki dorado y beige junto a dos tazas ochoko" width="880" height="1100" loading="lazy">
+        <span class="cap"><b><span class="es">El paquete completo</span><span class="ja">フルセット</span></b><small><span class="es">Botella, estuche, furoshiki y ochoko.</span><span class="ja">ボトル、ボックス、風呂敷、おちょこ。</span></small></span>
+      </button>
+      <button class="tile t-wide zoom rv" type="button" data-full="img/estuche.webp" aria-label="Ampliar: estuche de regalo">
+        <img src="img/estuche.webp" alt="Botella NÄNÄ junto al estuche marfil con agave dorado" width="1290" height="1219" loading="lazy">
+        <span class="cap"><b><span class="es">Estuche de regalo</span><span class="ja">ギフトボックス</span></b><small><span class="es">Marfil, con el agave en dorado.</span><span class="ja">金のアガベをあしらったアイボリー。</span></small></span>
+      </button>
+      <button class="tile zoom rv" type="button" data-full="img/ochoko.webp" aria-label="Ampliar: tazas ochoko">
+        <img src="img/ochoko.webp" alt="Dos tazas ochoko de cerámica marfil con el agave de NÄNÄ" width="682" height="550" loading="lazy">
+        <span class="cap"><b><span class="es">Dos tazas ochoko</span><span class="ja">おちょこ 2個</span></b><small><span class="es">Cerámica artesanal.</span><span class="ja">手づくりの陶器。</span></small></span>
+      </button>
+      <button class="tile zoom rv" type="button" data-full="img/furoshiki.webp" aria-label="Ampliar: paño furoshiki">
+        <img src="img/furoshiki.webp" alt="Botella NÄNÄ envuelta en un paño furoshiki con patrón de agave" width="521" height="1100" loading="lazy">
+        <span class="cap"><b><span class="es">Paño furoshiki</span><span class="ja">風呂敷</span></b><small><span class="es">Se envuelve y se reutiliza.</span><span class="ja">包んで、繰り返し使える。</span></small></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CÓMO DISFRUTARLO ============ -->
+<section class="sec enjoy" id="disfruta">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <p class="eyebrow"><span>04</span><span class="es">Cómo disfrutarlo</span><span class="ja">楽しみ方</span></p>
+      <h2><span class="es">Dos formas, <em>un mismo carácter</em>.</span><span class="ja">ふたつの飲み方、<em>ひとつの個性</em>。</span></h2>
+    </header>
+
+    <div class="serves">
+      <article class="serve rv">
+        <div class="serve-img"><img src="img/sodawari.webp" alt="Vaso alto con NÄNÄ, agua mineral, hielo y rodaja de limón" width="494" height="522" loading="lazy"></div>
+        <div class="serve-t"><p class="serve-n">ソーダ割り</p><h3>NÄNÄ Sodawari</h3><p><span class="es">NÄNÄ, agua mineral, hielo y un toque de limón.</span><span class="ja">ミネラルウォーターと氷で割り、レモンをひとたらし。</span></p></div>
+      </article>
+      <article class="serve rv">
+        <div class="serve-img"><img src="img/rocks.webp" alt="Vaso corto con NÄNÄ, un cubo de hielo grande y cáscara de naranja" width="502" height="370" loading="lazy"></div>
+        <div class="serve-t"><p class="serve-n">オン・ザ・ロック</p><h3>NÄNÄ On the Rocks</h3><p><span class="es">Un hielo grande y piel de naranja.</span><span class="ja">大きな氷と、オレンジの皮を添えて。</span></p></div>
+      </article>
+    </div>
+
+    <div class="pair rv">
+      <p class="pair-t"><span class="es">Acompáñalo con</span><span class="ja">合わせるなら</span></p>
+      <ul>
+        <li><img src="img/edamame.webp" alt="" width="488" height="362" loading="lazy"><span class="es">Edamames</span><span class="ja">枝豆</span></li>
+        <li><img src="img/sushi.webp" alt="" width="486" height="370" loading="lazy"><span class="es">Sushi</span><span class="ja">寿司</span></li>
+        <li><img src="img/nueces.webp" alt="" width="496" height="286" loading="lazy"><span class="es">Frutos secos</span><span class="ja">ナッツ</span></li>
+        <li><img src="img/chocolate.webp" alt="" width="490" height="278" loading="lazy"><span class="es">Chocolate amargo</span><span class="ja">ビターチョコ</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOKIO DE NOCHE ============ -->
+<section class="night" id="tokio">
+  <div class="night-scene">
+    <img class="night-bg" src="img/tokio.webp" alt="" width="1376" height="768" loading="lazy">
+    <div class="night-glow" aria-hidden="true"></div>
+    <div class="contact" aria-hidden="true"></div>
+    <img class="night-bottle" src="img/botella.webp?v=2" alt="Botella NÄNÄ sobre la barra de un bar de Ginza, Tokio, de noche" width="479" height="999" loading="lazy">
+    <img class="night-refl" src="img/botella.webp?v=2" alt="" width="479" height="999" loading="lazy" aria-hidden="true">
+  </div>
+  <div class="night-copy rv">
+    <p class="eyebrow light"><span>05</span><span class="es">Tokio</span><span class="ja">東京</span></p>
+    <h2><span class="es">Las noches de Tokio, <em>con raíz mexicana</em>.</span><span class="ja">メキシコの根を持つ、<em>東京の夜</em>。</span></h2>
+    <ul class="places"><li>銀座 <small>Ginza</small></li><li>六本木 <small>Roppongi</small></li><li>渋谷 <small>Shibuya</small></li><li>新宿 <small>Shinjuku</small></li></ul>
+    <p class="night-p"><span class="es">En bares, izakayas y tiendas especializadas, y también en línea.</span><span class="ja">バー、居酒屋、専門店、そしてオンラインで。</span></p>
+    <p class="hashtag"><span class="es">Comparte tu copa con</span><span class="ja">グラスをシェア</span> <b>#ナナの一杯</b></p>
+  </div>
+</section>
+
+<!-- ============ EL NOMBRE ============ -->
+<section class="sec name" id="nombre">
+  <div class="wrap">
+    <header class="sec-head center rv">
+      <p class="eyebrow"><span>06</span><span class="es">Identidad</span><span class="ja">アイデンティティ</span></p>
+      <h2><span class="es">Un nombre, <em>tres lecturas</em>.</span><span class="ja">ひとつの名前、<em>三つの読み方</em>。</span></h2>
+    </header>
+    <div class="glyphs">
+      <article class="glyph rv"><p class="g">NÄNÄ</p><h3><span class="es">Madre, en otomí</span><span class="ja">オトミ語で「母」</span></h3><p><span class="es">Origen, cuidado y raíz: la tierra que nos da identidad.</span><span class="ja">起源、慈しみ、ルーツ。私たちを形づくる大地。</span></p></article>
+      <article class="glyph rv"><p class="g" lang="ja">ナナ</p><h3><span class="es">Su escritura en katakana</span><span class="ja">カタカナの表記</span></h3><p><span class="es">El diálogo con Japón, sin perder la esencia mexicana.</span><span class="ja">メキシコらしさを保ちながら、日本と対話する。</span></p></article>
+      <article class="glyph rv"><p class="g" lang="ja">七</p><h3><span class="es">“Siete” en japonés</span><span class="ja">数字の「七」</span></h3><p><span class="es">Nana también es el siete: número de buena suerte.</span><span class="ja">「なな」は縁起の良い数字でもあります。</span></p></article>
+    </div>
+    <blockquote class="quote rv"><p><span class="es">“Nuestra esencia es mexicana; Japón nos inspira a expresarla de otra manera.”</span><span class="ja">「本質はメキシコに。日本は、それを別のかたちで表すインスピレーション。」</span></p></blockquote>
+  </div>
+</section>
+
+<!-- ============ CONTACTO + CLUB + INSTAGRAM ============ -->
+<section class="sec contact" id="contacto">
+  <div class="wrap">
+    <header class="sec-head rv">
+      <p class="eyebrow"><span>07</span><span class="es">Contacto</span><span class="ja">お問い合わせ</span></p>
+      <h2><span class="es">Pruébalo. Pídelo. <em>Compártelo</em>.</span><span class="ja">試して、注文して、<em>分かち合う</em>。</span></h2>
+    </header>
+
+    <div class="contact-grid">
+      <a class="ig rv" href="https://www.instagram.com/nanadestiladosmx/" target="_blank" rel="noopener">
+        <span class="ig-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1.1" class="fill"/></svg></span>
+        <span class="ig-t"><small><span class="es">Síguenos en Instagram</span><span class="ja">Instagramをフォロー</span></small><b>@nanadestiladosmx</b></span>
+        <span class="ig-go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+      </a>
+
+      <form class="card club rv" id="fc" novalidate>
+        <h3><span class="es">Únete al Club ナナ</span><span class="ja">ナナ・クラブに参加</span></h3>
+        <p class="note"><span class="es">Notas de cata, recetas y aviso de nuevos lotes.</span><span class="ja">テイスティングノート、レシピ、新ロットのお知らせ。</span></p>
+        <div class="field"><input type="email" id="ce" required autocomplete="email" placeholder=" "><label for="ce"><span class="es">Correo</span><span class="ja">メールアドレス</span></label></div>
+        <div class="field"><select id="cr"><option value="Cliente">Cliente / お客様</option><option value="Bar o tienda">Bar o tienda / バー・店舗</option><option value="Importador">Importador / 輸入者</option></select><label for="cr" class="up"><span class="es">¿Quién eres?</span><span class="ja">あなたは？</span></label></div>
+        <button class="btn" type="submit"><span class="es">Unirme</span><span class="ja">参加する</span></button>
+        <p class="note msg" id="fcm" role="status"></p>
+      </form>
+
+      <form class="card msgform rv" id="fm" novalidate>
+        <h3><span class="es">Escríbenos</span><span class="ja">メッセージ</span></h3>
+        <div class="field"><input id="mn" required autocomplete="name" placeholder=" "><label for="mn"><span class="es">Nombre</span><span class="ja">お名前</span></label></div>
+        <div class="field"><input type="email" id="me" required autocomplete="email" placeholder=" "><label for="me"><span class="es">Correo</span><span class="ja">メール</span></label></div>
+        <div class="field"><textarea id="mm" rows="3" required placeholder=" "></textarea><label for="mm"><span class="es">Pedidos, muestras o distribución</span><span class="ja">注文・サンプル・取扱</span></label></div>
+        <div class="rate"><span class="note"><span class="es">¿Ya lo probaste? Califica la cata</span><span class="ja">試飲の評価</span></span>
+          <div class="stars" id="st" role="group" aria-label="Calificación 1 a 5"><button type="button" aria-label="1 de 5" aria-pressed="false">★</button><button type="button" aria-label="2 de 5" aria-pressed="false">★</button><button type="button" aria-label="3 de 5" aria-pressed="false">★</button><button type="button" aria-label="4 de 5" aria-pressed="false">★</button><button type="button" aria-label="5 de 5" aria-pressed="false">★</button></div>
+        </div>
+        <button class="btn" type="submit"><span class="es">Enviar</span><span class="ja">送信</span></button>
+        <p class="note msg" id="fmm" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ PIE ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-brand">
+      <div>
+        <img class="foot-logo" src="img/logo.webp" alt="NÄNÄ ナナ" width="1007" height="383" loading="lazy">
+        <p class="foot-tag"><span class="es">Destilado 100% de agave, hecho a mano en Querétaro para las noches de Tokio.</span><span class="ja">ケレタロで手づくりされた100％アガベ蒸留酒。東京の夜のために。</span></p>
+        <div class="foot-social">
+          <a href="https://www.instagram.com/nanadestiladosmx/" target="_blank" rel="noopener" aria-label="Instagram @nanadestiladosmx"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.3"/><circle cx="17.6" cy="6.4" r="1" class="fill"/></svg></a>
+          <a href="mailto:contacto@nana-agave.jp" aria-label="Correo"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6.5L21 7"/></svg></a>
+        </div>
+      </div>
+      <form class="foot-news" id="fn" novalidate>
+        <p class="foot-h"><span class="es">Club ナナ</span><span class="ja">ナナ・クラブ</span></p>
+        <p class="note"><span class="es">Nuevos lotes, recetas y eventos en Tokio.</span><span class="ja">新ロット、レシピ、東京のイベント情報。</span></p>
+        <div class="news-row"><label class="sr" for="fne">Correo</label><input type="email" id="fne" required autocomplete="email" placeholder="tu@correo.com"><button class="btn sm" type="submit"><span class="es">Suscribirme</span><span class="ja">登録</span></button></div>
+        <p class="note msg" id="fnm" role="status"></p>
+      </form>
+    </div>
+
+    <nav class="foot-cols" aria-label="Pie de página">
+      <div><p class="foot-h"><span class="es">Producto</span><span class="ja">製品</span></p><ul>
+        <li><a href="#botella"><span class="es">La botella</span><span class="ja">ボトル</span></a></li>
+        <li><a href="#ritual"><span class="es">El ritual de regalo</span><span class="ja">ギフトセット</span></a></li>
+        <li><a href="#disfruta"><span class="es">Cómo disfrutarlo</span><span class="ja">楽しみ方</span></a></li>
+        <li><a href="#tokio"><span class="es">Dónde encontrarla</span><span class="ja">取扱店</span></a></li>
+      </ul></div>
+      <div><p class="foot-h">NÄNÄ</p><ul>
+        <li><a href="historia.html"><span class="es">Nuestra historia</span><span class="ja">私たちの物語</span></a></li>
+        <li><a href="historia.html#origen"><span class="es">Origen y transparencia</span><span class="ja">産地と透明性</span></a></li>
+        <li><a href="blog.html"><span class="es">Blog</span><span class="ja">ブログ</span></a></li>
+        <li><a href="historia.html#identidad"><span class="es">Identidad cultural</span><span class="ja">文化的アイデンティティ</span></a></li>
+      </ul></div>
+      <div><p class="foot-h"><span class="es">Ayuda</span><span class="ja">サポート</span></p><ul>
+        <li><a href="legal.html#faq"><span class="es">Preguntas frecuentes</span><span class="ja">よくある質問</span></a></li>
+        <li><a href="legal.html#envios"><span class="es">Envíos a Japón</span><span class="ja">日本への配送</span></a></li>
+        <li><a href="#contacto"><span class="es">Importadores y bares</span><span class="ja">輸入者・バーの方へ</span></a></li>
+        <li><a href="#contacto"><span class="es">Contacto</span><span class="ja">お問い合わせ</span></a></li>
+      </ul></div>
+      <div><p class="foot-h">Legal</p><ul>
+        <li><a href="legal.html#consumo"><span class="es">Consumo responsable</span><span class="ja">適正飲酒</span></a></li>
+        <li><a href="legal.html#privacidad"><span class="es">Aviso de privacidad</span><span class="ja">プライバシー</span></a></li>
+        <li><a href="legal.html#terminos"><span class="es">Términos de uso</span><span class="ja">利用規約</span></a></li>
+        <li><a href="legal.html#etiqueta"><span class="es">Etiquetado México / Japón</span><span class="ja">表示（メキシコ・日本）</span></a></li>
+      </ul></div>
+    </nav>
+
+    <div class="foot-top">
+      <a class="to-top" href="#inicio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg><span class="es">Volver arriba</span><span class="ja">トップへ</span></a>
+      <div class="credits">
+        <span class="flag" aria-hidden="true"><i></i><i></i><i></i></span>
+        <p class="cr-t"><span class="es">Orgullosamente mexicanos</span><span class="ja">メキシコの誇りをこめて</span></p>
+        <p class="cr-s"><span class="es">De Querétaro para Tokio.</span><span class="ja">ケレタロから東京へ。</span></p>
+        <p class="cr-n"><span class="es">Creado por</span><span class="ja">制作</span> <span class="nm">Guillermo Martínez</span><span class="nm">Betsabé Ortiz</span><span class="nm">Fernanda Ortiz</span><span class="nm">Jimena Briones</span></p>
+      </div>
+    </div>
+    <p class="legal"><span class="es">Beber con moderación. Prohibido a menores de 20 años. No lo consumas durante el embarazo o la lactancia.</span><span class="ja">お酒は20歳になってから。妊娠中・授乳期の飲酒は避けましょう。飲み過ぎに注意。</span></p>
+    <p class="small">© 2026 NÄNÄ ナナ · Universidad Tecnológica de Querétaro · Mercadotecnia Internacional · <span class="es">Imágenes conceptuales del producto; algunas escenas se generaron con IA.</span><span class="ja">製品のコンセプト画像です。一部のシーンはAIで生成しました。</span></p>
+    <p class="small refs">Cateora, P., Gilly, M., &amp; Graham, J. (2014). <i>Marketing internacional</i> (15.ª ed.). McGraw-Hill. · Lerma Kirchner, A. E., &amp; Márquez Castro, E. (2010). <i>Comercio y marketing internacional</i> (4.ª ed.). Cengage. · Quiñones Navarro, R. E. (2012). <i>Mercadotecnia internacional</i>.</p>
+  </div>
+</footer>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada" hidden>
+  <button type="button" class="lb-close" aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <img alt="">
+</div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
